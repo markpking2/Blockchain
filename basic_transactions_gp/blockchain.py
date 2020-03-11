@@ -91,7 +91,7 @@ class Blockchain(object):
         transaction = {
             'sender': sender,
             'recipient': recipient,
-            'amount': amount
+            'amount': int(amount)
         }
 
         self.current_transactions.append(transaction)
@@ -182,7 +182,7 @@ def full_chain():
 
 @app.route('/last_block', methods=['GET'])
 def last_block():
-    return jsonify(blockchain.last_block), 200
+    return jsonify({'last_block': blockchain.last_block}), 200
 
 
 @app.route('/transactions/new', methods=['POST'])
